@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_member_center">
+
+    <!--输入手机号-->
+    <ImageView
+        android:id="@+id/iv_login_phone"
+        android:layout_width="10dp"
+        android:layout_height="13dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_login_phone"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="20dp"
+        android:layout_below="@+id/rl_title"/>
+    <LinearLayout
+        android:id="@+id/ll_login_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/iv_login_phone"
+        android:layout_marginRight="17dp"
+        android:layout_below="@+id/rl_title">
+
+        <EditText
+            android:id="@+id/edit_login_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入用户名"
+            android:textColorHighlight="@color/title_color"
+            android:textColor="@color/title_color"
+            android:textSize="14sp"
+            android:paddingBottom="13dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/main_divider_line">
+
+        </View>
+    </LinearLayout>
+
+    <!--输入密码-->
+
+    <ImageView
+        android:id="@+id/iv_login_pwd"
+        android:layout_width="12dp"
+        android:layout_height="13dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_login_pwd"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="18dp"
+        android:layout_below="@+id/iv_login_phone"/>
+    <LinearLayout
+        android:id="@+id/ll_login_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/iv_login_pwd"
+        android:layout_marginRight="17dp"
+        android:layout_below="@+id/ll_login_view">
+
+        <EditText
+            android:id="@+id/edit_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:textColorHighlight="@color/title_color"
+            android:textColor="@color/title_color"
+            android:textSize="14sp"
+            android:paddingBottom="13dp"
+            android:maxLength="16"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/main_divider_line">
+
+        </View>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_login_find_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ll_login_pwd"
+        android:layout_marginRight="13dp"
+        android:paddingTop="13dp"
+        android:text="忘记密码?"
+        android:textSize="12sp"
+        android:textColor="@color/title_color"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_below="@+id/tv_login_find_password"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="77dp"
+        android:background="@drawable/btn_login"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
