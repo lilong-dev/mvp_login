@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.ll.mvp.login.components.DaggerLoginComponent;
+import com.ll.mvp.login.modules.LoginModule;
 import com.ll.mvp.login.presenter.LoginPresenter;
 import com.ll.mvp.login.utils.ToastUtil;
 import com.ll.mvp.login.view.ILoginView;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DaggerLoginComponent.builder().appComponent(((AppApplication)getApplication()).getAppComponent()).build().inject(this);
+        DaggerLoginComponent.builder().appComponent(((AppApplication)getApplication()).getAppComponent()).loginModule(new LoginModule(this)).build().inject(this);
         editPassword = (EditText) findViewById(R.id.edit_login_password);
         editUserName = (EditText) findViewById(R.id.edit_login_mobile);
         btnLogin = (Button) findViewById(R.id.btn_login);
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
                 mPresenter.login();
             }
         });
-        mPresenter.setLoginView(this);
+        //mPresenter.setLoginView(this);
 
     }
 

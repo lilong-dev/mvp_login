@@ -17,14 +17,14 @@ public class LoginPresenter {
     private ILoginView mLoginView;
     private Handler mHandler = new Handler();
     @Inject
-    public LoginPresenter(ILoginModel loginModel){
-
+    public LoginPresenter(ILoginModel loginModel,ILoginView loginView){
         this.mLoginModel = loginModel;
-    }
-
-    public void setLoginView(ILoginView loginView){
         this.mLoginView = loginView;
     }
+
+   /* public void setLoginView(ILoginView loginView){
+        this.mLoginView = loginView;
+    }*/
     public void login(){
         this.mLoginView.showLoading();
         mLoginModel.login(mLoginView.getUserName(), mLoginView.getPassword(), new ILoginModel.LoginStateListener() {
