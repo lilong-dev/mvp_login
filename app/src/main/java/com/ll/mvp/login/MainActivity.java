@@ -6,14 +6,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.ll.mvp.login.components.DaggerLoginComponent;
 import com.ll.mvp.login.presenter.LoginPresenter;
+import com.ll.mvp.login.utils.ToastUtil;
 import com.ll.mvp.login.view.ILoginView;
 import com.ll.mvp.longin.R;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements ILoginView{
-    private LoginPresenter mPresenter;
+    @Inject
+    LoginPresenter mPresenter;
+    @Inject
+    ToastUtil mToastUtil;
     private EditText editUserName;
     private EditText editPassword;
     private Button btnLogin;
@@ -22,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new LoginPresenter(this);
+        DaggerLoginComponent.builder().appComponent(((AppApplication)getApplication()).getAppComponent()).build().inject(this);
         editPassword = (EditText) findViewById(R.id.edit_login_password);
         editUserName = (EditText) findViewById(R.id.edit_login_mobile);
         btnLogin = (Button) findViewById(R.id.btn_login);
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
                 mPresenter.login();
             }
         });
+        mPresenter.setLoginView(this);
+
     }
 
     @Override
@@ -50,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
      */
     @Override
     public void loginSuccess() {
-        Toast.makeText(this,"登录成功", Toast.LENGTH_LONG).show();
+        mToastUtil.showToast("登录成功");
     }
 
     /**
@@ -58,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements ILoginView{
      */
     @Override
     public void loginError() {
-        Toast.makeText(this,"登录失败", Toast.LENGTH_LONG).show();
+        mToastUtil.showToast("登录失败");
     }
 
     @Override

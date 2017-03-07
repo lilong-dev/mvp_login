@@ -7,18 +7,24 @@ import com.ll.mvp.login.model.ILoginModel;
 import com.ll.mvp.login.model.LoginModelImpl;
 import com.ll.mvp.login.view.ILoginView;
 
+import javax.inject.Inject;
+
 /**
  * Created by Administrator on 2017/2/26.
  */
 public class LoginPresenter {
-    private LoginModelImpl mLoginModel;
+    private ILoginModel mLoginModel;
     private ILoginView mLoginView;
     private Handler mHandler = new Handler();
-    public LoginPresenter(ILoginView loginView){
-        this.mLoginView = loginView;
-        mLoginModel = new LoginModelImpl();
+    @Inject
+    public LoginPresenter(ILoginModel loginModel){
+
+        this.mLoginModel = loginModel;
     }
 
+    public void setLoginView(ILoginView loginView){
+        this.mLoginView = loginView;
+    }
     public void login(){
         this.mLoginView.showLoading();
         mLoginModel.login(mLoginView.getUserName(), mLoginView.getPassword(), new ILoginModel.LoginStateListener() {
